@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --font-serif:'Lora',Georgia,serif;
+  --font-sans:'Inter',sans-serif;
+  --font-mono:'Courier New',monospace;
+
+  --bg:#f5f0e8;
+  --bg-card:#ede8df;
+  --bg-white:#faf7f2;
+  --bg-dark:#1a1a1a;
+  --bg-darker:#111;
+
+  --border:#d6cfc3;
+  --border-mid:#c4bdb0;
+
+  --accent:#1a1a1a;
+  --accent2:#3d3d3d;
+  --muted:#7a7265;
+  --faint:#a09890;
+
+  --text:#1a1a1a;
+  --text2:#3d3d3d;
+  --text3:#5c564e;
+
+  --red:#c0392b;
+  --orange:#d35400;
+  --yellow:#f39c12;
+  --green:#27ae60;
+  --teal:#16a085;
+  --blue:#2980b9;
+  --indigo:#2c3e7a;
+  --purple:#8e44ad;
+}
+
+body{font-family:var(--font-sans);background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg-card)}
+::-webkit-scrollbar-thumb{background:var(--border-mid);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent2)}
