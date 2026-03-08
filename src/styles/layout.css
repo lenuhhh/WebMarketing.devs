@@ -200,6 +200,20 @@ html, body { overflow-x: hidden; max-width: 100vw; }
   .nav-dot { width: 30px; height: 30px; font-size: .68rem; }
   .nav-tab-label { font-size: .58rem; }
   .nav-tab { padding: 0 .5rem .875rem; }
+
+  /* ── Grids on tablet ── */
+  .g2 { grid-template-columns: 1fr; }
+  .g3 { grid-template-columns: 1fr 1fr; }
+  .g4 { grid-template-columns: 1fr 1fr; }
+
+  /* ── Showcase: stack vertically ── */
+  .showcase { flex-direction: column; overflow-x: visible; align-items: stretch; }
+
+  /* ── Fixed-width elements → fluid ── */
+  .phone { width: 100%; min-height: auto; }
+  .bizcard { width: 100%; height: 160px; }
+  .insta { width: 100%; }
+  .insta-img { aspect-ratio: 16/9; }
 }
 
 /* ══════════════════════════════
@@ -217,6 +231,13 @@ html, body { overflow-x: hidden; max-width: 100vw; }
   .nav { margin-top: 2rem; }
   .nav-btn { padding: .45rem .75rem; font-size: .75rem; }
   .g2, .g3, .g4 { grid-template-columns: 1fr; }
+  /* ── Showcase stays stacked on mobile ── */
+  .showcase { flex-direction: column; overflow-x: visible; align-items: stretch; }
+  /* ── Cards full width on mobile ── */
+  .phone { width: 100%; min-height: auto; }
+  .bizcard { width: 100%; height: 140px; }
+  .insta { width: 100%; }
+  .insta-img { aspect-ratio: 4/3; }
   .showcase { gap: 1rem; }
   .page-title { font-size: 1.5rem; }
   .hero { min-height: 160px; padding: 1.25rem; }
