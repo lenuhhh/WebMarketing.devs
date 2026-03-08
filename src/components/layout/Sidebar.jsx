@@ -8,7 +8,10 @@ export default function Sidebar({ active, onChange, open, onClose }) {
         aria-hidden="true"
       />
       <aside className={`sidebar${open ? '' : ' closed'}`}>
-        <div className="sidebar-label">Маркетинг</div>
+        <div className="sidebar-header">
+          <div className="sidebar-label">Маркетинг</div>
+          <button className="sidebar-close-btn" onClick={onClose} aria-label="Закрити меню">✕</button>
+        </div>
         {TABS.map((t, i) => (
           <button key={t.id} className={`tab-btn${active === t.id ? ' active' : ''}`}
             onClick={() => { onChange(t.id); onClose(); }}
