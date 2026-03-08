@@ -194,6 +194,12 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 /* ══════════════════════════════
    RESPONSIVE — TABLET ≤ 900px
 ══════════════════════════════ */
+
+/* ══════════════════════════════
+   RESPONSIVE — TABLET ≤ 900px
+   Правило: g2→1col, g3→2col, g4→2col
+   Вкладені в картки теж → 2col max
+══════════════════════════════ */
 @media (max-width: 900px) {
   .main { padding: 1.5rem 1.25rem 2rem; }
   .tab-nav { padding: 0 .5rem; height: 68px; }
@@ -201,23 +207,40 @@ html, body { overflow-x: hidden; max-width: 100vw; }
   .nav-tab-label { font-size: .58rem; }
   .nav-tab { padding: 0 .5rem .875rem; }
 
-  /* ── Grids on tablet ── */
+  /* ─ Топ-рівень: g2→1col, g3/g4→2col ─ */
   .g2 { grid-template-columns: 1fr; }
   .g3 { grid-template-columns: 1fr 1fr; }
   .g4 { grid-template-columns: 1fr 1fr; }
 
-  /* ── Showcase: stack vertically ── */
-  .showcase { flex-direction: column; overflow-x: visible; align-items: stretch; }
+  /* ─ Вкладені всередині .card/.card-dark → завжди 2col ─ */
+  .card .g2, .card .g3, .card .g4,
+  .card-dark .g2, .card-dark .g3, .card-dark .g4 {
+    grid-template-columns: 1fr 1fr;
+  }
 
-  /* ── Fixed-width elements → fluid ── */
+  /* ─ Мінімальна ширина 0 для grid items ─ */
+  .stat, .platform, .card, .card-dark { min-width: 0; box-sizing: border-box; }
+
+  /* ─ Showcase: стекати вертикально ─ */
+  .showcase { flex-direction: column; overflow-x: visible; align-items: stretch; gap: 1rem; }
+
+  /* ─ Елементи фіксованої ширини → fluid ─ */
   .phone { width: 100%; min-height: auto; }
   .bizcard { width: 100%; height: 160px; }
   .insta { width: 100%; }
   .insta-img { aspect-ratio: 16/9; }
+
+  /* ─ Overflow prevention ─ */
+  .card, .card-dark, .tip, .toc, .acc-body {
+    overflow: hidden; word-break: break-word; box-sizing: border-box;
+  }
+  .codebox pre { overflow-x: auto; }
+  .funnel-label { min-width: 80px; }
 }
 
 /* ══════════════════════════════
    RESPONSIVE — MOBILE ≤ 600px
+   Правило: ВСЕ → 1 колонка
 ══════════════════════════════ */
 @media (max-width: 600px) {
   .header-top { padding: 0 1rem; }
@@ -227,19 +250,76 @@ html, body { overflow-x: hidden; max-width: 100vw; }
   .nav-tab-label { display: none; }
   .nav-tab { padding: 0 .35rem .75rem; }
   .nav-tab::after { display: none; }
-  .main { padding: 1.25rem .875rem 2rem; }
+  .main { padding: 1.25rem .875rem 2rem; overflow-x: hidden; }
   .nav { margin-top: 2rem; }
   .nav-btn { padding: .45rem .75rem; font-size: .75rem; }
+
+  /* ─ ВСІ сітки → 1 колонка ─ */
   .g2, .g3, .g4 { grid-template-columns: 1fr; }
-  /* ── Showcase stays stacked on mobile ── */
-  .showcase { flex-direction: column; overflow-x: visible; align-items: stretch; }
-  /* ── Cards full width on mobile ── */
-  .phone { width: 100%; min-height: auto; }
-  .bizcard { width: 100%; height: 140px; }
-  .insta { width: 100%; }
+
+  /* ─ Вкладені сітки в картках → 1 колонка ─ */
+  .card .g2, .card .g3, .card .g4,
+  .card-dark .g2, .card-dark .g3, .card-dark .g4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* ─ Showcase: стек ─ */
+  .showcase { flex-direction: column; overflow-x: visible; align-items: stretch; gap: 1rem; }
+
+  /* ─ Елементи з фіксованою шириною → 100% ─ */
+  .phone { width: 100%; min-height: auto; box-sizing: border-box; }
+  .bizcard { width: 100%; height: 140px; box-sizing: border-box; }
+  .insta { width: 100%; box-sizing: border-box; }
   .insta-img { aspect-ratio: 4/3; }
-  .showcase { gap: 1rem; }
-  .page-title { font-size: 1.5rem; }
+
+  /* ─ Типографіка ─ */
+  .page-title { font-size: 1.4rem; word-break: break-word; }
+  .sec-title { font-size: 1.05rem; word-break: break-word; }
   .hero { min-height: 160px; padding: 1.25rem; }
-  .hero-title { font-size: 1.25rem; }
+  .hero-title { font-size: 1.2rem; }
+  .hero-desc { font-size: .8rem; }
+
+  /* ─ Overflow prevention для всіх блоків ─ */
+  .card, .card-dark, .tip, .toc, .acc-body, .quote, .codebox {
+    overflow: hidden;
+    word-break: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .codebox pre { overflow-x: auto; white-space: pre; word-break: normal; }
+
+  /* ─ Воронка: перенос на малих екранах ─ */
+  .funnel-step { flex-wrap: wrap; gap: .5rem; }
+  .funnel-label { min-width: 0; width: 100%; font-size: .78rem; }
+  .funnel-bar-wrap { width: 100%; min-width: 0; }
+  .funnel-pct { text-align: left; }
+
+  /* ─ Stats ─ */
+  .stat { min-width: 0; padding: .875rem 1rem; box-sizing: border-box; }
+  .stat-num { font-size: 1.6rem; }
+  .stat-label { font-size: .68rem; }
+
+  /* ─ Platform cards ─ */
+  .platform { min-width: 0; box-sizing: border-box; }
+  .platform-desc { font-size: .73rem; }
+
+  /* ─ Steps ─ */
+  .step { min-width: 0; box-sizing: border-box; }
+  .step-title { word-break: break-word; font-size: .82rem; }
+  .step-desc { word-break: break-word; font-size: .75rem; }
+
+  /* ─ Checklist ─ */
+  .check-item { font-size: .78rem; }
+
+  /* ─ Bizcard ─ */
+  .bizcard-contacts { flex-direction: column; gap: .2rem; }
+  .bizcard-tagline { display: none; }
+
+  /* ─ Tags ─ */
+  .tags { gap: .3rem; }
+  .tag { font-size: .68rem; padding: .22rem .65rem; }
+
+  /* ─ Nav buttons ─ */
+  .nav { flex-wrap: wrap; gap: .5rem; }
+  .nav-counter { width: 100%; text-align: center; order: -1; }
 }
